@@ -5,7 +5,7 @@ import { DynamicFormService, formConstants, FieldConfig } from 'angular-reactive
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
   title = 'Angular Dynamic Form Creator';
@@ -34,43 +34,7 @@ export class AppComponent {
               {
                 name: formConstants.validationType.required
               }
-            ],
-            // relation: [
-            //   {
-            //     action: formConstants.relationType.readonly,
-            //     operation: formConstants.operationType.AND,
-            //     value: true,
-            //     where: [
-            //       {
-            //         rowId: "row1",
-            //         fieldName: "email2",
-            //         value: "1"
-            //       },
-            //       {
-            //         rowId: "row1",
-            //         fieldName: "email",
-            //         value: "1"
-            //       }
-            //     ]
-            //   },
-            //   {
-            //     action: formConstants.relationType.readonly,
-            //     operation: formConstants.operationType.OR,
-            //     value: true,
-            //     where: [
-            //       {
-            //         rowId: "row1",
-            //         fieldName: "email2",
-            //         value: "123"
-            //       },
-            //       {
-            //         rowId: "row1",
-            //         fieldName: "email",
-            //         value: "321"
-            //       }
-            //     ]
-            //   },
-            // ]
+            ]
           },
           {
             type: formConstants.fieldType.textBox,
@@ -108,14 +72,7 @@ export class AppComponent {
                 name: formConstants.validationType.required
               }
             ]
-          }
-        ]
-      },
-      {
-        id: "row3",
-        label: "",
-        class: "",
-        fields: [
+          },
           {
             type: formConstants.fieldType.textBox,
             label: "Address 2",
@@ -126,25 +83,25 @@ export class AppComponent {
             },
             value: "",
             validations: []
-          },
-          {
-            type: formConstants.fieldType.files,
-            label: "Photo",
-            name: "photo",
-            attr: {
-              class: "",
-              placeholder: "Photo"
-            },
-            value: "",
-            validations: []
           }
         ]
       },
       {
-        id: "row4",
+        id: "row3",
         label: "",
         class: "",
         fields: [
+          {
+            type: formConstants.fieldType.dateTextBox,
+            label: "Current Date",
+            name: "currentdate",
+            attr: {
+              class: "",
+              placeholder: "Current Date"
+            },
+            value: "",
+            validations: []
+          },
           {
             type: formConstants.fieldType.radio,
             label: "Gender",
@@ -177,9 +134,50 @@ export class AppComponent {
         ]
       },
       {
+        id: "row4",
+        label: "",
+        class: "",
+        fields: [
+          {
+            type: formConstants.fieldType.timeTextBox,
+            label: "Current Time",
+            name: "current-time",
+            attr: {
+              class: ""
+            },
+            value: "",
+            validations: []
+          },
+          {
+            type: formConstants.fieldType.files,
+            label: "Photo",
+            name: "photo",
+            returnValue: true,
+            attr: {
+              class: "",
+              placeholder: "Photo",
+              base64codedFile: true
+            },
+            value: "",
+            validations: []
+          },
+          {
+            type: formConstants.fieldType.image,
+            label: "Show Photo",
+            name: "show-photo",
+            attr: {
+              class: "show-photo"
+            },
+            value: "",
+            validations: []
+          }
+        ]
+      },
+      {
         id: "row5",
         label: "",
         class: "",
+        divider: true,
         fields: [
           {
             type: formConstants.fieldType.textBox,
@@ -230,7 +228,7 @@ export class AppComponent {
             label: "Submit",
             validateForm: true,
             name: "submit",
-            class: "text-right",
+            class: "text-center",
             attr: {
               class: "btn-success",
             }
@@ -240,9 +238,29 @@ export class AppComponent {
             label: "cancel",
             returnValue: true,
             name: "cancel",
-            class: "text-left",
+            class: "text-center",
             attr: {
               class: "btn-danger",
+            }
+          },
+          {
+            type: formConstants.fieldType.button,
+            label: "Reset",
+            resetForm: true,
+            name: "reset",
+            class: "text-center",
+            attr: {
+              class: "",
+            }
+          },
+          {
+            type: formConstants.fieldType.button,
+            label: "Form Object",
+            returnFormObject: true,
+            name: "form-object",
+            class: "text-center",
+            attr: {
+              class: "btn-info",
             }
           }
         ]
@@ -254,5 +272,24 @@ export class AppComponent {
 
   submitEvent(event) {
     console.log('Form values', event);
+
+    if (event.fieldName === "photo") {
+      this._dynamicFormService.updateFormAttr([
+        {
+          rowId: "row4",
+          fieldName: "photo",
+          value: true,
+          attrName: formConstants.attributeType.readonly
+        }
+      ]);
+
+      this._dynamicFormService.updateFormValue([
+        {
+          rowId: "row4",
+          fieldName: "show-photo",
+          value: event['formData'][3]['photo'][0]
+        }
+      ]);
+    }
   }
 }

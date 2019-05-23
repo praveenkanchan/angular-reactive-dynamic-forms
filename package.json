@@ -5,7 +5,7 @@
   "description": "angular-reactive-dynamic-forms",
   "scripts": {
     "lint": "tslint ./src/**/*.ts -t verbose",
-    "start": "ng serve",
+    "start": "ng serve --port 4202",
     "test": "ng test",
     "build": "ng build --prod",
     "e2e": "ng e2e",
@@ -33,7 +33,7 @@
     "@angular/router": "^7.1.0",
     "@angular/upgrade": "^7.1.0",
     "angular-in-memory-web-api": "github:brandonroberts/in-memory-web-api-bazel#50a34d8",
-    "angular-reactive-dynamic-forms": "^1.2.3",
+    "angular-reactive-dynamic-forms": "^1.5.2",
     "core-js": "^2.5.4",
     "rxjs": "^6.5.1",
     "zone.js": "~0.8.26"

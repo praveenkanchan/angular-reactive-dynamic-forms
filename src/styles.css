@@ -63,3 +63,7 @@ nav a.active {
 * {
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.show-photo {
+  height: 100px;
+}
