@@ -2,10 +2,16 @@
 
 # angular-reactive-dynamic-forms
 
-  
-[**dynamic forms guide**](https://angular.io/docs/ts/latest/cookbook/dynamic-form.html), It **fully automates form UI creation** by introducing a set of maintainable **JSON**, **dynamic form control components and dynamic form control service**
+<br/>  
+It fully automates form UI creation by introducing a set of maintainable JSON, dynamic form control components and dynamic form control service.
 
-    
+<br/>
+<br/> 
+
+See [DEMO](https://angular-reactive-dynamic-forms.stackblitz.io "See angular reactive dynamic forms demo")
+
+<br/>
+<br/> 
 
 ## Table of Contents
 
@@ -19,7 +25,8 @@
 
 -  [Form Groups](#form-groups)
 
-  
+<br/>
+<br/>
 
 ## Getting Started
 
@@ -31,7 +38,8 @@
 npm i angular-reactive-dynamic-forms --save
 ```
   
-  
+<br/>
+
 
 ## Running the Sample
 
@@ -61,6 +69,7 @@ npm i
 npm start
 ```
 
+<br/>
   
   
 
@@ -84,26 +93,30 @@ import { DynamicFormControllerModule } from  "angular-reactive-dynamic-forms";
 
 export  class  AppModule {}
 ```
-
+<br/>
   
 
 **2. Create a**  `FormGroup`  **via**  `DynamicFormService`:
 
 ```typescript
-import { DynamicFormService, formConstants } from  'angular-reactive-dynamic-forms';  
+import { DynamicFormService, formConstants, FieldConfig } from  'angular-reactive-dynamic-forms';  
 
 export  class  DynamicFormComponent  implements  OnInit {
 
-    fieldJson:  any  = [];
+    formGroup: FieldConfig[] = [];
 
     constructor(private  _dynamicFormService: DynamicFormService) {}
 
     ngOnInit() {
-        this.formGroup = this.formService.createFormGroup(this.formModel);
+        this.formGroup = [
+            ...
+        ];
+
+        this._dynamicFormService.setFormFields(this.formGroup);
     }
 }
 ```
-
+<br/>
   
 
 **3. Add a**  `DynamicFormComponent`  :
@@ -112,43 +125,49 @@ export  class  DynamicFormComponent  implements  OnInit {
 <dynamic-form-controller (submitEvent)="submitEvent($event)"></dynamic-form-controller>
 ```
 
+<br/>
+<br/>
+
 
 
 ## Features
 
 
-
 **1. Relation Update** :
 
 
-|    |readonly |class |
-|----|---------|------|
-|AND |✓        |✓     |
-|OR  |✓        |✓     |
+|    |readonly |class |display |
+|----|---------|------|--------|
+|AND |✓        |✓     |✓       |
+|OR  |✓        |✓     |✓       |
 
 
-
+<br/>
+<br/>
 
 
 **2. Validation Update** :
 
 
 
-|               |required |min |max |minLength |maxLength |email |mobile |float |
-|---------------|---------|----|----|----------|----------|------|-------|------|
-|number         |✓        |✓   |✓   |✓         |✓         |✗     |✓      |✓     |
-|textBox        |✓        |✓   |✓   |✓         |✓         |✓     |✓      |✓     |
-|textArea       |✓        |✗   |✗   |✓         |✓         |✗     |✗      |✗     |
-|dateTextBox    |✓        |✗   |✗   |✗         |✗         |✗     |✗      |✗     |
-|timeTextBox    |✓        |✗   |✗   |✗         |✗         |✗     |✗      |✗     |
-|checkBox Group |✓        |✗   |✗   |✓         |✓         |✗     |✗      |✗     |
-|radio Group    |✓        |✗   |✗   |✓         |✓         |✗     |✗      |✗     |
-|selectOption   |✓        |✗   |✗   |✓         |✓         |✗     |✗      |✗     |
-|files          |✓        |✗   |✗   |✓         |✓         |✗     |✗      |✗     |
-|button         |✗        |✗   |✗   |✗         |✗         |✗     |✗      |✗     |
+|               |required |min |max |minLength |maxLength |email |mobile |float |pattern |
+|---------------|---------|----|----|----------|----------|------|-------|------|--------|
+|number         |✓        |✓   |✓   |✓         |✓         |✗     |✓      |✓     |✓       |
+|textBox        |✓        |✓   |✓   |✓         |✓         |✓     |✓      |✓     |✓       |
+|password       |✓        |✓   |✓   |✓         |✓         |✓     |✓      |✓     |✓       |
+|textArea       |✓        |✗   |✗   |✓         |✓         |✗     |✗      |✗     |✓       |
+|dateTextBox    |✓        |✗   |✗   |✗         |✗         |✗     |✗      |✗     |✗       |
+|timeTextBox    |✓        |✗   |✗   |✗         |✗         |✗     |✗      |✗     |✗       |
+|checkBox Group |✓        |✗   |✗   |✓         |✓         |✗     |✗      |✗     |✗       |
+|radio Group    |✓        |✗   |✗   |✓         |✓         |✗     |✗      |✗     |✗       |
+|selectOption   |✓        |✗   |✗   |✓         |✓         |✗     |✗      |✗     |✗       |
+|files          |✓        |✗   |✗   |✓         |✓         |✗     |✗      |✗     |✗       |
+|image          |✓        |✗   |✗   |✗         |✗         |✗     |✗      |✗     |✗       |
+|button         |✗        |✗   |✗   |✗         |✗         |✗     |✗      |✗     |✗       |
 
 
-
+<br/>
+<br/>
 
 ## Form Groups
 
@@ -172,7 +191,8 @@ ngOnInit() {
                     name:  "email",
                     attr: {
                         class:  "",
-                        placeholder:  "Email"
+                        placeholder:  "Email",
+                        display: true // Default value
                     },
                     value:  "",
                     validations: []
@@ -183,7 +203,8 @@ ngOnInit() {
                     name:  "password",
                     attr: {
                         class:  "",
-                        placeholder:  "Password"
+                        placeholder:  "Password",
+                        display: true // Default value
                     },
                     value:  "",
                     validations: []
@@ -199,29 +220,66 @@ ngOnInit() {
   
 
 ```html
-<dynamic-material-form  [group]="formGroup"  [model]="formModel"></dynamic-material-form>
+<dynamic-material-form (submitEvent)="submitEvent($event)"></dynamic-material-form>
 ```
 
-  
 
-**2. You can now easily modify your form array with**  `DynamicFormService`:
+<br/>
+
+
+
+**2. You can add divider in every rows**:
 
 ```typescript
-let changeValue = [
-	{
-        rowId:  'row1',
-        fieldName:  'email',
-        attrName:  formConstants.attributeType.readonly,
-        value:  "xyz@gmail.com"
+this.formGroup = [
+    {
+        id:  "row1",
+        label:  "",
+        divider: true,
+        fields: [
+            ...
+        ]
     }
 ];
-
-this._dynamicFormService.updateFormAttr(changeValue);
 ```
 
 
 
-**3. You can relate one or more fields with conditional values**:
+<br/>
+
+
+
+**3. In file type input return file object or also return base64decoded files using `base64codedFile` attributes**:
+
+```typescript
+this.formGroup = [
+    {
+        id:  "row1",
+        label:  "",
+        fields: [
+            ...
+            {
+                type: formConstants.fieldType.files,
+                label: "Logo",
+                name: "logo",
+                attr: {
+                    ...
+                    base64codedFile: true
+                },
+                value: [],
+                validations: []
+            }
+        ]
+    }
+];
+```
+
+
+
+<br/>
+
+
+**4. You can relate one or more fields with conditional values**:
 
 ```typescript
 this.formGroup = [
@@ -243,16 +301,16 @@ this.formGroup = [
                         operation: formConstants.operationType.AND,
                         value: true, // Default value
                         where: [
-                        {
-                            rowId: "row1",
-                            fieldName: "name",
-                            value: "xyz"
-                        },
-                        {
-                            rowId: "row1",
-                            fieldName: "number",
-                            value: "XXXXX"
-                        }
+                            {
+                                rowId: "row1",
+                                fieldName: "name",
+                                value: "xyz"
+                            },
+                            {
+                                rowId: "row1",
+                                fieldName: "number",
+                                value: "XXXXX"
+                            }
                         ]
                     },
                     {
@@ -260,16 +318,16 @@ this.formGroup = [
                         operation: formConstants.operationType.OR,
                         value: true, // Default value
                         where: [
-                        {
-                            rowId: "row1",
-                            fieldName: "name",
-                            value: "abc"
-                        },
-                        {
-                            rowId: "row1",
-                            fieldName: "number",
-                            value: "321"
-                        }
+                            {
+                                rowId: "row1",
+                                fieldName: "name",
+                                value: "abc"
+                            },
+                            {
+                                rowId: "row1",
+                                fieldName: "number",
+                                value: "321"
+                            }
                         ]
                     }
                 ]
@@ -290,10 +348,10 @@ this.formGroup = [
 ```
 
 
+<br/>
 
 
-
-**4. You can click this button then validate value and return form values**:
+**5. You can click this button then validate value and return form values**:
 
 ```typescript
 this.formGroup = [
@@ -318,9 +376,10 @@ this.formGroup = [
 ```
 
 
+<br/>
 
 
-**5. You can click this button then return form values without validate value**:
+**6. You can click this button then return form values without validate value**:
 
 ```typescript
 this.formGroup = [
@@ -346,10 +405,107 @@ this.formGroup = [
 
 
 
-**6. You can return values for click event**:
+
+<br/>
+
+
+**7. You can click this button then return reactive form object**:
+
+```typescript
+this.formGroup = [
+    ...
+    {
+        id: "row1",
+        label: "",
+        class: "",
+        fields: [
+            {
+                type: formConstants.fieldType.button,
+                label: "Save",
+                returnFormObject: true,
+                name: "save"
+                attr: {
+                    class: "btn-success",
+                }
+            }
+        ]
+    }
+];
+```
+
+
+
+
+<br/>
+
+
+**8. You can click this button then reset form values**:
+
+```typescript
+this.formGroup = [
+    ...
+    {
+        id: "row1",
+        label: "",
+        class: "",
+        fields: [
+            {
+                type: formConstants.fieldType.button,
+                label: "Reset",
+                resetForm: true,
+                name: "reset"
+                attr: {
+                    class: "btn-info",
+                }
+            }
+        ]
+    }
+];
+```
+
+<br/>
+
+
+**9. You can return values for click event**:
 
 ```typescript
 submitEvent(event) {
     console.log('Form values', event);
 }
+```
+
+
+<br/>  
+
+**10. You can now easily modify your form attributes with**  `DynamicFormService`:
+
+```typescript
+let changeValue = [
+	{
+        rowId:  'row1',
+        fieldName:  'email',
+        attrName:  formConstants.attributeType.readonly,
+        value:  true
+    }
+];
+
+this._dynamicFormService.updateFormAttr(changeValue);
+```
+
+
+
+<br/>  
+
+**11. You can now easily modify your form values with**  `DynamicFormService`:
+
+```typescript
+let changeValue = [
+	{
+        rowId: 'row1',
+        fieldName: 'email',
+        value: "xyz@xyz.com"
+    }
+];
+
+this._dynamicFormService.updateFormValue(changeValue);
 ```
