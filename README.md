@@ -176,7 +176,7 @@ export class DynamicFormComponent implements OnInit {
 |[files](https://github.com/praveenkanchan/angular-reactive-dynamic-forms/blob/master/document/files.md "Interface detail of files")          |✓        |✗   |✗   |✓         |✓         |✗     |✗      |✗     |✗       |
 |[image](https://github.com/praveenkanchan/angular-reactive-dynamic-forms/blob/master/document/image.md "Interface detail of image")          |✓        |✗   |✗   |✗         |✗         |✗     |✗      |✗     |✗       |
 |[hidden](https://github.com/praveenkanchan/angular-reactive-dynamic-forms/blob/master/document/hidden.md "Interface detail of hidden")         |✗        |✗   |✗   |✗         |✗         |✗     |✗      |✗     |✗       |
-|stepWizard     |✗        |✗   |✗   |✗         |✗         |✗     |✗      |✗     |✗       |
+|[stepWizard](https://github.com/praveenkanchan/angular-reactive-dynamic-forms/blob/master/document/stepWizard.md "Interface detail of stepWizard")     |✗        |✗   |✗   |✗         |✗         |✗     |✗      |✗     |✗       |
 |[button](https://github.com/praveenkanchan/angular-reactive-dynamic-forms/blob/master/document/button.md "Interface detail of button")         |✗        |✗   |✗   |✗         |✗         |✗     |✗      |✗     |✗       |
 
 
