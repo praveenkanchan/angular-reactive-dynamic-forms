@@ -5,13 +5,13 @@
 <br/>  
 It fully automates form UI creation by introducing a set of maintainable JSON, dynamic form control components and dynamic form control service.
 
+
 <br/>
-<br/> 
+<br/>
 
 See [DEMO](https://angular-reactive-dynamic-forms.stackblitz.io "See angular reactive dynamic forms demo")
 
 <br/>
-<br/> 
 
 ## Table of Contents
 
@@ -80,13 +80,12 @@ npm start
 **1. Import**  `DynamicFormControllerModule`  **and a UI module**:
 
 ```typescript
-import { DynamicFormControllerModule } from  "angular-reactive-dynamic-forms";
+import { DynamicFormControllerModule } from "angular-reactive-dynamic-forms";
   
 @NgModule({
 
     imports: [
         ...
-        ReactiveFormsModule,
         DynamicFormControllerModule
     ]
 });
@@ -99,9 +98,9 @@ export  class  AppModule {}
 **2. Create a**  `FormGroup`  **via**  `DynamicFormService`:
 
 ```typescript
-import { DynamicFormService, formConstants, FieldConfig } from  'angular-reactive-dynamic-forms';  
+import { DynamicFormService, FormConstants, FieldConfig } from 'angular-reactive-dynamic-forms';  
 
-export  class  DynamicFormComponent  implements  OnInit {
+export class DynamicFormComponent implements OnInit {
 
     formGroup: FieldConfig[] = [];
 
@@ -133,7 +132,20 @@ export  class  DynamicFormComponent  implements  OnInit {
 ## Features
 
 
-**1. Relation Update** :
+**1. Version Support** :
+
+
+|Angular |angular-reactive-dynamic-forms |
+|--------|-------------------------------|
+|v7.x    |✓                              |
+|v6.x    |✓                              |
+
+
+<br/>
+<br/>
+
+
+**2. Relation Update** :
 
 
 |    |readonly |class |display |
@@ -146,28 +158,56 @@ export  class  DynamicFormComponent  implements  OnInit {
 <br/>
 
 
-**2. Validation Update** :
+**3. Validation Update** :
 
 
 
 |               |required |min |max |minLength |maxLength |email |mobile |float |pattern |
 |---------------|---------|----|----|----------|----------|------|-------|------|--------|
-|number         |✓        |✓   |✓   |✓         |✓         |✗     |✓      |✓     |✓       |
-|textBox        |✓        |✓   |✓   |✓         |✓         |✓     |✓      |✓     |✓       |
-|password       |✓        |✓   |✓   |✓         |✓         |✓     |✓      |✓     |✓       |
-|textArea       |✓        |✗   |✗   |✓         |✓         |✗     |✗      |✗     |✓       |
-|dateTextBox    |✓        |✗   |✗   |✗         |✗         |✗     |✗      |✗     |✗       |
-|timeTextBox    |✓        |✗   |✗   |✗         |✗         |✗     |✗      |✗     |✗       |
-|checkBox Group |✓        |✗   |✗   |✓         |✓         |✗     |✗      |✗     |✗       |
-|radio Group    |✓        |✗   |✗   |✓         |✓         |✗     |✗      |✗     |✗       |
-|selectOption   |✓        |✗   |✗   |✓         |✓         |✗     |✗      |✗     |✗       |
-|files          |✓        |✗   |✗   |✓         |✓         |✗     |✗      |✗     |✗       |
-|image          |✓        |✗   |✗   |✗         |✗         |✗     |✗      |✗     |✗       |
-|button         |✗        |✗   |✗   |✗         |✗         |✗     |✗      |✗     |✗       |
+|[number](https://github.com/praveenkanchan/angular-reactive-dynamic-forms/blob/master/document/number.md "Interface detail of number")         |✓        |✓   |✓   |✓         |✓         |✗     |✓      |✓     |✓       |
+|[textBox](https://github.com/praveenkanchan/angular-reactive-dynamic-forms/blob/master/document/textBox.md "Interface detail of textBox")         |✓        |✓   |✓   |✓         |✓         |✓     |✓      |✓     |✓       |
+|[password](https://github.com/praveenkanchan/angular-reactive-dynamic-forms/blob/master/document/password.md "Interface detail of password")       |✓        |✓   |✓   |✓         |✓         |✓     |✓      |✓     |✓       |
+|[textArea](https://github.com/praveenkanchan/angular-reactive-dynamic-forms/blob/master/document/textArea.md "Interface detail of textArea")       |✓        |✗   |✗   |✓         |✓         |✗     |✗      |✗     |✓       |
+|[dateTextBox](https://github.com/praveenkanchan/angular-reactive-dynamic-forms/blob/master/document/dateTextBox.md "Interface detail of dateTextBox")    |✓        |✗   |✗   |✗         |✗         |✗     |✗      |✗     |✗       |
+|[timeTextBox](https://github.com/praveenkanchan/angular-reactive-dynamic-forms/blob/master/document/timeTextBox.md "Interface detail of timeTextBox")    |✓        |✗   |✗   |✗         |✗         |✗     |✗      |✗     |✗       |
+|[checkBox Group](https://github.com/praveenkanchan/angular-reactive-dynamic-forms/blob/master/document/checkBox.md "Interface detail of checkBox") |✓        |✗   |✗   |✓         |✓         |✗     |✗      |✗     |✗       |
+|[radio Group](https://github.com/praveenkanchan/angular-reactive-dynamic-forms/blob/master/document/radio.md "Interface detail of radio")    |✓        |✗   |✗   |✓         |✓         |✗     |✗      |✗     |✗       |
+|[selectOption](https://github.com/praveenkanchan/angular-reactive-dynamic-forms/blob/master/document/selectOption.md "Interface detail of selectOption")   |✓        |✗   |✗   |✓         |✓         |✗     |✗      |✗     |✗       |
+|[files](https://github.com/praveenkanchan/angular-reactive-dynamic-forms/blob/master/document/files.md "Interface detail of files")          |✓        |✗   |✗   |✓         |✓         |✗     |✗      |✗     |✗       |
+|[image](https://github.com/praveenkanchan/angular-reactive-dynamic-forms/blob/master/document/image.md "Interface detail of image")          |✓        |✗   |✗   |✗         |✗         |✗     |✗      |✗     |✗       |
+|[hidden](https://github.com/praveenkanchan/angular-reactive-dynamic-forms/blob/master/document/hidden.md "Interface detail of hidden")         |✗        |✗   |✗   |✗         |✗         |✗     |✗      |✗     |✗       |
+|stepWizard     |✗        |✗   |✗   |✗         |✗         |✗     |✗      |✗     |✗       |
+|[button](https://github.com/praveenkanchan/angular-reactive-dynamic-forms/blob/master/document/button.md "Interface detail of button")         |✗        |✗   |✗   |✗         |✗         |✗     |✗      |✗     |✗       |
 
 
 <br/>
 <br/>
+
+**4. Event Update** :
+
+ 
+
+|               |clickEvent |changeEvent |
+|---------------|-----------|------------|
+|number         |✗          |✓           |
+|textBox        |✗          |✓           |
+|password       |✗          |✓           |
+|textArea       |✗          |✓           |
+|dateTextBox    |✗          |✓           |
+|timeTextBox    |✗          |✓           |
+|checkBox Group |✓          |✓           |
+|radio Group    |✗          |✓           |
+|selectOption   |✗          |✓           |
+|files          |✗          |✓           |
+|image          |✗          |✗           |
+|hidden         |✗          |✗           |
+|stepWizard     |✓          |✗           |
+|button         |✓          |✗           |
+
+ 
+<br/>
+<br/>
+
 
 ## Form Groups
 
@@ -186,7 +226,7 @@ ngOnInit() {
             class:  "",
             fields: [
                 {
-                    type:  formConstants.fieldType.textBox,
+                    type:  FormConstants.fieldType.textBox,
                     label:  "Email",
                     name:  "email",
                     attr: {
@@ -198,7 +238,7 @@ ngOnInit() {
                     validations: []
                 },
                 {
-                    type:  formConstants.fieldType.textBox,
+                    type:  FormConstants.fieldType.textBox,
                     label:  "Password",
                     name:  "password",
                     attr: {
@@ -259,7 +299,7 @@ this.formGroup = [
         fields: [
             ...
             {
-                type: formConstants.fieldType.files,
+                type: FormConstants.fieldType.files,
                 label: "Logo",
                 name: "logo",
                 attr: {
@@ -287,7 +327,7 @@ this.formGroup = [
         id:  "row1",
         fields: [
             {
-                type:  formConstants.fieldType.textBox,
+                type:  FormConstants.fieldType.textBox,
                 label:  "name",
                 name:  "name",
                 attr: {
@@ -297,8 +337,8 @@ this.formGroup = [
                 value:  "",
                 relation: [
                     {
-                        action: formConstants.relationType.readonly,
-                        operation: formConstants.operationType.AND,
+                        action: FormConstants.relationType.readonly,
+                        operation: FormConstants.operationType.AND,
                         value: true, // Default value
                         where: [
                             {
@@ -314,8 +354,8 @@ this.formGroup = [
                         ]
                     },
                     {
-                        action: formConstants.relationType.readonly,
-                        operation: formConstants.operationType.OR,
+                        action: FormConstants.relationType.readonly,
+                        operation: FormConstants.operationType.OR,
                         value: true, // Default value
                         where: [
                             {
@@ -333,7 +373,7 @@ this.formGroup = [
                 ]
             },
             {
-                type:  formConstants.fieldType.textBox,
+                type:  FormConstants.fieldType.textBox,
                 label:  "Number",
                 name:  "number",
                 attr: {
@@ -362,9 +402,11 @@ this.formGroup = [
         class: "",
         fields: [
             {
-                type: formConstants.fieldType.button,
+                type: FormConstants.fieldType.button,
                 label: "Save",
-                validateForm: true,
+                clickEvent: {
+                    validateForm: true
+                },
                 name: "save"
                 attr: {
                     class: "btn-success",
@@ -390,9 +432,11 @@ this.formGroup = [
         class: "",
         fields: [
             {
-                type: formConstants.fieldType.button,
+                type: FormConstants.fieldType.button,
                 label: "Save",
-                returnValue: true,
+                clickEvent: {
+                    returnValue: true
+                },
                 name: "save"
                 attr: {
                     class: "btn-success",
@@ -420,9 +464,11 @@ this.formGroup = [
         class: "",
         fields: [
             {
-                type: formConstants.fieldType.button,
+                type: FormConstants.fieldType.button,
                 label: "Save",
-                returnFormObject: true,
+                clickEvent: {
+                    returnFormObject: true
+                },
                 name: "save"
                 attr: {
                     class: "btn-success",
@@ -450,9 +496,11 @@ this.formGroup = [
         class: "",
         fields: [
             {
-                type: formConstants.fieldType.button,
+                type: FormConstants.fieldType.button,
                 label: "Reset",
-                resetForm: true,
+                clickEvent: {
+                    resetForm: true
+                },
                 name: "reset"
                 attr: {
                     class: "btn-info",
@@ -484,7 +532,7 @@ let changeValue = [
 	{
         rowId:  'row1',
         fieldName:  'email',
-        attrName:  formConstants.attributeType.readonly,
+        attrName:  FormConstants.attributeType.readonly,
         value:  true
     }
 ];

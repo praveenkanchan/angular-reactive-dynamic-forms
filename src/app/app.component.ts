@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { DynamicFormService, formConstants, FieldConfig } from 'angular-reactive-dynamic-forms';
+import { DynamicFormService, FormConstants, FieldConfig } from 'angular-reactive-dynamic-forms';
 
 @Component({
     selector: 'app-root',
@@ -11,6 +11,7 @@ export class AppComponent {
     title = 'Angular Dynamic Form Creator';
 
     fieldJson: FieldConfig[] = [];
+    formConstants: any = FormConstants;
 
     constructor(private _dynamicFormService: DynamicFormService) { }
 
@@ -22,7 +23,7 @@ export class AppComponent {
                 class: "",
                 fields: [
                     {
-                        type: formConstants.fieldType.textBox,
+                        type: this.formConstants.fieldType.textBox,
                         label: "Email",
                         name: "email",
                         attr: {
@@ -32,13 +33,13 @@ export class AppComponent {
                         value: "",
                         validations: [
                             {
-                                name: formConstants.validationType.required
+                                name: this.formConstants.validationType.required
                             }
                         ],
                         relation: [
                             {
-                                action: formConstants.relationType.readonly,
-                                operation: formConstants.operationType.AND,
+                                action: this.formConstants.relationType.readonly,
+                                operation: this.formConstants.operationType.AND,
                                 value: true, // Default value
                                 where: [
                                     {
@@ -54,8 +55,8 @@ export class AppComponent {
                                 ]
                             },
                             {
-                                action: formConstants.relationType.readonly,
-                                operation: formConstants.operationType.OR,
+                                action: this.formConstants.relationType.readonly,
+                                operation: this.formConstants.operationType.OR,
                                 value: true, // Default value
                                 where: [
                                     {
@@ -73,7 +74,7 @@ export class AppComponent {
                         ]
                     },
                     {
-                        type: formConstants.fieldType.password,
+                        type: this.formConstants.fieldType.password,
                         label: "Password",
                         name: "password",
                         attr: {
@@ -83,7 +84,7 @@ export class AppComponent {
                         value: "",
                         validations: [
                             {
-                                name: formConstants.validationType.required
+                                name: this.formConstants.validationType.required
                             }
                         ]
                     }
@@ -95,7 +96,7 @@ export class AppComponent {
                 class: "",
                 fields: [
                     {
-                        type: formConstants.fieldType.textBox,
+                        type: this.formConstants.fieldType.textBox,
                         label: "Address",
                         name: "address",
                         attr: {
@@ -105,12 +106,12 @@ export class AppComponent {
                         value: "",
                         validations: [
                             {
-                                name: formConstants.validationType.required
+                                name: this.formConstants.validationType.required
                             }
                         ]
                     },
                     {
-                        type: formConstants.fieldType.textBox,
+                        type: this.formConstants.fieldType.textBox,
                         label: "Address 2",
                         name: "address2",
                         attr: {
@@ -128,7 +129,7 @@ export class AppComponent {
                 class: "",
                 fields: [
                     {
-                        type: formConstants.fieldType.dateTextBox,
+                        type: this.formConstants.fieldType.dateTextBox,
                         label: "Current Date",
                         name: "currentdate",
                         attr: {
@@ -139,7 +140,7 @@ export class AppComponent {
                         validations: []
                     },
                     {
-                        type: formConstants.fieldType.radio,
+                        type: this.formConstants.fieldType.radio,
                         label: "Gender",
                         name: "gender",
                         attr: {
@@ -153,7 +154,7 @@ export class AppComponent {
                         validations: []
                     },
                     {
-                        type: formConstants.fieldType.checkBox,
+                        type: this.formConstants.fieldType.checkBox,
                         label: "Hobbies",
                         name: "hobbies",
                         attr: {
@@ -175,7 +176,7 @@ export class AppComponent {
                 class: "",
                 fields: [
                     {
-                        type: formConstants.fieldType.textBox,
+                        type: this.formConstants.fieldType.textBox,
                         label: "City",
                         name: "city",
                         attr: {
@@ -186,12 +187,13 @@ export class AppComponent {
                         validations: []
                     },
                     {
-                        type: formConstants.fieldType.selectOption,
+                        type: this.formConstants.fieldType.selectOption,
                         label: "State",
                         name: "state",
                         attr: {
                             class: "",
-                            placeholder: "State"
+                            placeholder: "State",
+                            multiple: true
                         },
                         value: [],
                         otherOptions: [
@@ -201,7 +203,7 @@ export class AppComponent {
                         validations: []
                     },
                     {
-                        type: formConstants.fieldType.textBox,
+                        type: this.formConstants.fieldType.textBox,
                         label: "Zip",
                         name: "zip",
                         attr: {
@@ -220,7 +222,7 @@ export class AppComponent {
                 divider: true,
                 fields: [
                     {
-                        type: formConstants.fieldType.timeTextBox,
+                        type: this.formConstants.fieldType.timeTextBox,
                         label: "Current Time",
                         name: "current-time",
                         attr: {
@@ -230,10 +232,12 @@ export class AppComponent {
                         validations: []
                     },
                     {
-                        type: formConstants.fieldType.files,
+                        type: this.formConstants.fieldType.files,
                         label: "Photo",
                         name: "photo",
-                        returnValue: true,
+                        changeEvent: {
+                            returnValue: true
+                        },
                         attr: {
                             class: "",
                             placeholder: "Photo",
@@ -243,7 +247,7 @@ export class AppComponent {
                         validations: []
                     },
                     {
-                        type: formConstants.fieldType.image,
+                        type: this.formConstants.fieldType.image,
                         label: "Show Photo",
                         name: "show-photo",
                         attr: {
@@ -260,9 +264,11 @@ export class AppComponent {
                 class: "",
                 fields: [
                     {
-                        type: formConstants.fieldType.button,
+                        type: this.formConstants.fieldType.button,
                         label: "Submit",
-                        validateForm: true,
+                        clickEvent: {
+                            validateForm: true
+                        },
                         name: "submit",
                         class: "text-center",
                         attr: {
@@ -270,9 +276,11 @@ export class AppComponent {
                         }
                     },
                     {
-                        type: formConstants.fieldType.button,
+                        type: this.formConstants.fieldType.button,
                         label: "cancel",
-                        returnValue: true,
+                        clickEvent: {
+                            returnValue: true
+                        },
                         name: "cancel",
                         class: "text-center",
                         attr: {
@@ -280,9 +288,11 @@ export class AppComponent {
                         }
                     },
                     {
-                        type: formConstants.fieldType.button,
+                        type: this.formConstants.fieldType.button,
                         label: "Reset",
-                        resetForm: true,
+                        clickEvent: {
+                            resetForm: true
+                        },
                         name: "reset",
                         class: "text-center",
                         attr: {
@@ -290,9 +300,11 @@ export class AppComponent {
                         }
                     },
                     {
-                        type: formConstants.fieldType.button,
+                        type: this.formConstants.fieldType.button,
                         label: "Form Object",
-                        returnFormObject: true,
+                        clickEvent: {
+                            returnFormObject: true
+                        },
                         name: "form-object",
                         class: "text-center",
                         attr: {
@@ -315,7 +327,7 @@ export class AppComponent {
                     rowId: "row4",
                     fieldName: "photo",
                     value: true,
-                    attrName: formConstants.attributeType.readonly
+                    attrName: this.formConstants.attributeType.readonly
                 }
             ]);
 
