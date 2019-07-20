@@ -98,11 +98,12 @@ export  class  AppModule {}
 **2. Create a**  `FormGroup`  **via**  `DynamicFormService`:
 
 ```typescript
-import { DynamicFormService, FormConstants, FieldConfig } from 'angular-reactive-dynamic-forms';  
+import { DynamicFormService, FormConstants, FieldConfig, DefaultConfig } from 'angular-reactive-dynamic-forms';  
 
 export class DynamicFormComponent implements OnInit {
 
     formGroup: FieldConfig[] = [];
+    defaultConfig: DefaultConfig = {};
 
     constructor(private  _dynamicFormService: DynamicFormService) {}
 
@@ -111,7 +112,11 @@ export class DynamicFormComponent implements OnInit {
             ...
         ];
 
-        this._dynamicFormService.setFormFields(this.formGroup);
+        this.defaultConfig = {
+            formStyle: FormConstants.formStyle.vertically // or FormConstants.formStyle.horizontal
+        };
+
+        this._dynamicFormService.setFormFields(this.formGroup, this.defaultConfig);
     }
 }
 ```
@@ -135,10 +140,10 @@ export class DynamicFormComponent implements OnInit {
 **1. Version Support** :
 
 
-|Angular |angular-reactive-dynamic-forms |
-|--------|-------------------------------|
-|v7.x    |✓                              |
-|v6.x    |✓                              |
+|Ionic 4      |Angular |angular-reactive-dynamic-forms |
+|-------------|--------|-------------------------------|
+|Angular v7.x |v7.x    |✓                              |
+|Angular v6.x |v6.x    |✓                              |
 
 
 <br/>
@@ -238,7 +243,7 @@ ngOnInit() {
                     validations: []
                 },
                 {
-                    type:  FormConstants.fieldType.textBox,
+                    type:  FormConstants.fieldType.password,
                     label:  "Password",
                     name:  "password",
                     attr: {
@@ -407,9 +412,9 @@ this.formGroup = [
                 clickEvent: {
                     validateForm: true
                 },
-                name: "save"
+                name: "save",
                 attr: {
-                    class: "btn-success",
+                    class: "btn-success"
                 }
             }
         ]
@@ -437,9 +442,9 @@ this.formGroup = [
                 clickEvent: {
                     returnValue: true
                 },
-                name: "save"
+                name: "save",
                 attr: {
-                    class: "btn-success",
+                    class: "btn-success"
                 }
             }
         ]
@@ -469,9 +474,9 @@ this.formGroup = [
                 clickEvent: {
                     returnFormObject: true
                 },
-                name: "save"
+                name: "save",
                 attr: {
-                    class: "btn-success",
+                    class: "btn-success"
                 }
             }
         ]
@@ -501,9 +506,9 @@ this.formGroup = [
                 clickEvent: {
                     resetForm: true
                 },
-                name: "reset"
+                name: "reset",
                 attr: {
-                    class: "btn-info",
+                    class: "btn-info"
                 }
             }
         ]

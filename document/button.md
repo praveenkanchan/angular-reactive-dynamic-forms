@@ -30,6 +30,7 @@ interface Fields {
 interface Attributes {
     class?: string | null;
     readonly?: boolean | false;
+    display?: boolean | true;
 }
 ```
 

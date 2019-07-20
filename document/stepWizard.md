@@ -32,6 +32,7 @@ interface Attributes {
     class?: string | null;
     bindValue?: string | 'value';
     bindLabel?: string | 'label';
+    display?: boolean | true;
 }
 ```
 

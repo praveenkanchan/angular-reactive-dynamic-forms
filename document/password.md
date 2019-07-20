@@ -32,6 +32,7 @@ interface Attributes {
     class?: string | null;
     readonly?: boolean | false;
     placeholder?: string | '';
+    display?: boolean | true;
 }
 ```
 

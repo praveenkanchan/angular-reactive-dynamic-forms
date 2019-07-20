@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { DynamicFormService, FormConstants, FieldConfig } from 'angular-reactive-dynamic-forms';
+import { DynamicFormService, FormConstants, FieldConfig, DefaultConfig } from 'angular-reactive-dynamic-forms';
 
 @Component({
     selector: 'app-root',
@@ -315,7 +315,10 @@ export class AppComponent {
             }
         ];
 
-        this._dynamicFormService.setFormFields(this.fieldJson);
+        const defaultConfig: DefaultConfig = {
+            formStyle: FormConstants.formStyle.horizontal
+        };
+        this._dynamicFormService.setFormFields(this.fieldJson, defaultConfig);
     }
 
     submitEvent(event) {

@@ -36,6 +36,7 @@ interface Attributes {
     placeholder?: string | '';
     bindValue?: string | 'value';
     bindLabel?: string | 'label';
+    display?: boolean | true;
 }
 ```
 

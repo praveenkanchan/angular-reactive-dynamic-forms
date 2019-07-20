@@ -35,6 +35,7 @@ interface Attributes {
     base64codedFile?: boolean | false;
     multiple?: boolean | false;
     accept?: string | null;
+    display?: boolean | true;
 }
 ```
 

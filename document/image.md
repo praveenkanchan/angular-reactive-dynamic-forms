@@ -29,6 +29,7 @@ interface Fields {
 ```typescript
 interface Attributes {
     class?: string | null;
+    display?: boolean | true;
 }
 ```
 
