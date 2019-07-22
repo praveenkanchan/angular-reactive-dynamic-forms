@@ -310,13 +310,25 @@ export class AppComponent {
                         attr: {
                             class: "btn-info",
                         }
+                    },
+                    {
+                        type: this.formConstants.fieldType.button,
+                        label: "Form Fields Object",
+                        clickEvent: {
+                            returnFieldObject: true
+                        },
+                        name: "fields-object",
+                        class: "text-center",
+                        attr: {
+                            class: "btn-info",
+                        }
                     }
                 ]
             }
         ];
 
         const defaultConfig: DefaultConfig = {
-            formStyle: FormConstants.formStyle.horizontal
+            formStyle: FormConstants.formStyle.vertically
         };
         this._dynamicFormService.setFormFields(this.fieldJson, defaultConfig);
     }

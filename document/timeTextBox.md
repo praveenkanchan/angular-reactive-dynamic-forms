@@ -77,6 +77,7 @@ interface EventValue {
     returnValue?: boolean | false;
     returnFormObject?: boolean | false;
     resetForm?: boolean | false;
+    returnFieldObject?: boolean | false;
 }
 ```
 

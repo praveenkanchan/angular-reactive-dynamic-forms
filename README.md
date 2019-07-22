@@ -453,8 +453,6 @@ this.formGroup = [
 ```
 
 
-
-
 <br/>
 
 
@@ -485,12 +483,40 @@ this.formGroup = [
 ```
 
 
+<br/>
+
+
+**8. You can click this button then return fields form JSON object**:
+
+```typescript
+this.formGroup = [
+    ...
+    {
+        id: "row1",
+        label: "",
+        class: "",
+        fields: [
+            {
+                type: FormConstants.fieldType.button,
+                label: "Save",
+                clickEvent: {
+                    returnFieldObject: true
+                },
+                name: "save",
+                attr: {
+                    class: "btn-success"
+                }
+            }
+        ]
+    }
+];
+```
 
 
 <br/>
 
 
-**8. You can click this button then reset form values**:
+**9. You can click this button then reset form values**:
 
 ```typescript
 this.formGroup = [
@@ -519,7 +545,7 @@ this.formGroup = [
 <br/>
 
 
-**9. You can return values for click event**:
+**10. You can return values for click event**:
 
 ```typescript
 submitEvent(event) {
@@ -530,7 +556,7 @@ submitEvent(event) {
 
 <br/>  
 
-**10. You can now easily modify your form attributes with**  `DynamicFormService`:
+**11. You can now easily modify your form attributes with**  `DynamicFormService`:
 
 ```typescript
 let changeValue = [
@@ -549,7 +575,7 @@ this._dynamicFormService.updateFormAttr(changeValue);
 
 <br/>  
 
-**11. You can now easily modify your form values with**  `DynamicFormService`:
+**12. You can now easily modify your form values with**  `DynamicFormService`:
 
 ```typescript
 let changeValue = [
