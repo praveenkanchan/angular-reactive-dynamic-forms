@@ -1,6 +1,6 @@
 {
   "name": "angular-reactive-dynamic-forms",
-  "version": "1.7.7",
+  "version": "1.8.0",
   "private": true,
   "description": "angular-reactive-dynamic-forms",
   "scripts": {
@@ -33,7 +33,7 @@
     "@angular/router": "^7.1.0",
     "@angular/upgrade": "^7.1.0",
     "angular-in-memory-web-api": "github:brandonroberts/in-memory-web-api-bazel#50a34d8",
-    "angular-reactive-dynamic-forms": "^1.7.10",
+    "angular-reactive-dynamic-forms": "^1.8.0",
     "core-js": "^2.5.4",
     "rxjs": "^6.5.1",
     "zone.js": "~0.8.26"

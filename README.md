@@ -545,7 +545,17 @@ this.formGroup = [
 <br/>
 
 
-**10. You can return values for click event**:
+**10. You can validate form with**  `DynamicFormService`:
+
+```typescript
+this._dynamicFormService.validateFormField();
+```
+
+
+<br/>
+
+
+**11. You can return values for click event**:
 
 ```typescript
 submitEvent(event) {
@@ -556,7 +566,7 @@ submitEvent(event) {
 
 <br/>  
 
-**11. You can now easily modify your form attributes with**  `DynamicFormService`:
+**12. You can now easily modify your form attributes with**  `DynamicFormService`:
 
 ```typescript
 let changeValue = [
@@ -575,7 +585,7 @@ this._dynamicFormService.updateFormAttr(changeValue);
 
 <br/>  
 
-**12. You can now easily modify your form values with**  `DynamicFormService`:
+**13. You can now easily modify your form values with**  `DynamicFormService`:
 
 ```typescript
 let changeValue = [
