@@ -12,6 +12,10 @@ export class AppComponent {
 
     fieldJson: FieldConfig[] = [];
     formConstants: any = FormConstants;
+    defaultConfig: DefaultConfig = {
+        formStyle: FormConstants.formStyle.vertically, // or FormConstants.formStyle.horizontal
+        class: 'abc-form'
+    };
 
     constructor(private _dynamicFormService: DynamicFormService) { }
 
@@ -326,11 +330,6 @@ export class AppComponent {
                 ]
             }
         ];
-
-        const defaultConfig: DefaultConfig = {
-            formStyle: FormConstants.formStyle.vertically
-        };
-        this._dynamicFormService.setFormFields(this.fieldJson, defaultConfig);
     }
 
     submitEvent(event) {
@@ -350,7 +349,7 @@ export class AppComponent {
                 {
                     rowId: "row4",
                     fieldName: "show-photo",
-                    value: event['formData'][3]['photo'][0]
+                    value: event['formData'][4]['photo'][0]
                 }
             ]);
         }
