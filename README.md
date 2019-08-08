@@ -84,10 +84,10 @@ import { DynamicFormControllerModule } from "angular-reactive-dynamic-forms";
   
 @NgModule({
 
-  imports: [
-    ...
-    DynamicFormControllerModule
-  ]
+    imports: [
+        ...
+        DynamicFormControllerModule
+    ]
 });
 
 export  class  AppModule {}
@@ -95,30 +95,31 @@ export  class  AppModule {}
 <br/>
   
 
-**2. Create a**  `FormGroup`  **using**  `JSON`:
+**2. Create a**  `FormGroup`  **via**  `DynamicFormService`:
 
 ```typescript
 import { DynamicFormService, FormConstants, FieldConfig, DefaultConfig } from 'angular-reactive-dynamic-forms';  
 
 export class DynamicFormComponent implements OnInit {
 
-  formGroup: FieldConfig[] = [];
+    formGroup: FieldConfig[] = [];
+    defaultConfig: DefaultConfig = {};
 
-  defaultConfig: DefaultConfig = {
-    formStyle: FormConstants.formStyle.vertically, // or FormConstants.formStyle.horizontal
-    class: 'abc-form',
-    validateForm: false // for automatically validate
-  };
+    constructor(private  _dynamicFormService: DynamicFormService) {}
 
-  constructor(private  _dynamicFormService: DynamicFormService) {}
+    ngOnInit() {
+        this.formGroup = [
+            ...
+        ];
 
-  ngOnInit() {
-    this.formGroup = [
-      ...
-    ];
+        this.defaultConfig = {
+            formStyle: FormConstants.formStyle.vertically, // or FormConstants.formStyle.horizontal
+            class: 'dynamic-form',
+            validateForm: false // Default value
+        };
 
-    this._dynamicFormService.validateFormField();
-  }
+        this._dynamicFormService.setFormFields(this.formGroup, this.defaultConfig);
+    }
 }
 ```
 <br/>
@@ -127,7 +128,7 @@ export class DynamicFormComponent implements OnInit {
 **3. Add a**  `DynamicFormComponent`  :
 
 ```html
-<dynamic-form-controller [config]="defaultConfig" [fieldJson]="formGroup" (submitEvent)="submitEvent($event)"></dynamic-form-controller>
+<dynamic-form-controller (submitEvent)="submitEvent($event)"></dynamic-form-controller>
 ```
 
 <br/>
@@ -225,46 +226,48 @@ In order to improve clarity it's often considered good practice to group forms i
 
 ```typescript
 ngOnInit() {
-  this.formGroup = [
-    {
-      id:  "row1",
-      label:  "",
-      class:  "",
-      fields: [
+    this.formGroup = [
         {
-          type:  FormConstants.fieldType.textBox,
-          label:  "Email",
-          name:  "email",
-          attr: {
+            id:  "row1",
+            label:  "",
             class:  "",
-            placeholder:  "Email",
-            display: true // Default value
-          },
-          value:  "",
-          validations: []
-        },
-        {
-          type:  FormConstants.fieldType.password,
-          label:  "Password",
-          name:  "password",
-          attr: {
-            class:  "",
-            placeholder:  "Password",
-            display: true // Default value
-          },
-          value:  "",
-          validations: []
+            fields: [
+                {
+                    type:  FormConstants.fieldType.textBox,
+                    label:  "Email",
+                    name:  "email",
+                    attr: {
+                        class:  "",
+                        placeholder:  "Email",
+                        display: true // Default value
+                    },
+                    value:  "",
+                    validations: []
+                },
+                {
+                    type:  FormConstants.fieldType.password,
+                    label:  "Password",
+                    name:  "password",
+                    attr: {
+                        class:  "",
+                        placeholder:  "Password",
+                        display: true // Default value
+                    },
+                    value:  "",
+                    validations: []
+                }
+            ]
         }
-      ]
-    }
-  ];
+    ];
+
+    this._dynamicFormService.setFormFields(this.formGroup);
 }
 ```
 
   
 
 ```html
-<dynamic-material-form [config]="defaultConfig" [fieldJson]="formGroup" (submitEvent)="submitEvent($event)"></dynamic-material-form>
+<dynamic-material-form (submitEvent)="submitEvent($event)"></dynamic-material-form>
 ```
 
 
@@ -276,14 +279,14 @@ ngOnInit() {
 
 ```typescript
 this.formGroup = [
-  {
-    id:  "row1",
-    label:  "",
-    divider: true,
-    fields: [
-      ...
-    ]
-  }
+    {
+        id:  "row1",
+        label:  "",
+        divider: true,
+        fields: [
+            ...
+        ]
+    }
 ];
 ```
 
@@ -297,24 +300,24 @@ this.formGroup = [
 
 ```typescript
 this.formGroup = [
-  {
-    id:  "row1",
-    label:  "",
-    fields: [
-      ...
-      {
-        type: FormConstants.fieldType.files,
-        label: "Logo",
-        name: "logo",
-        attr: {
-          ...
-          base64codedFile: true
-        },
-        value: [],
-        validations: []
-      }
-    ]
-  }
+    {
+        id:  "row1",
+        label:  "",
+        fields: [
+            ...
+            {
+                type: FormConstants.fieldType.files,
+                label: "Logo",
+                name: "logo",
+                attr: {
+                    ...
+                    base64codedFile: true
+                },
+                value: [],
+                validations: []
+            }
+        ]
+    }
 ];
 ```
 
@@ -327,67 +330,67 @@ this.formGroup = [
 
 ```typescript
 this.formGroup = [
-  {
-    id:  "row1",
-    fields: [
-      {
-        type:  FormConstants.fieldType.textBox,
-        label:  "name",
-        name:  "name",
-        attr: {
-          class:  "",
-          placeholder:  "name"
-        },
-        value:  "",
-        relation: [
-          {
-            action: FormConstants.relationType.readonly,
-            operation: FormConstants.operationType.AND,
-            value: true, // Default value
-            where: [
-              {
-                rowId: "row1",
-                fieldName: "name",
-                value: "xyz"
-              },
-              {
-                rowId: "row1",
-                fieldName: "number",
-                value: "XXXXX"
-              }
-            ]
-          },
-          {
-            action: FormConstants.relationType.readonly,
-            operation: FormConstants.operationType.OR,
-            value: true, // Default value
-            where: [
-              {
-                rowId: "row1",
-                fieldName: "name",
-                value: "abc"
-              },
-              {
-                rowId: "row1",
-                fieldName: "number",
-                value: "321"
-              }
-            ]
-          }
+    {
+        id:  "row1",
+        fields: [
+            {
+                type:  FormConstants.fieldType.textBox,
+                label:  "name",
+                name:  "name",
+                attr: {
+                    class:  "",
+                    placeholder:  "name"
+                },
+                value:  "",
+                relation: [
+                    {
+                        action: FormConstants.relationType.readonly,
+                        operation: FormConstants.operationType.AND,
+                        value: true, // Default value
+                        where: [
+                            {
+                                rowId: "row1",
+                                fieldName: "name",
+                                value: "xyz"
+                            },
+                            {
+                                rowId: "row1",
+                                fieldName: "number",
+                                value: "XXXXX"
+                            }
+                        ]
+                    },
+                    {
+                        action: FormConstants.relationType.readonly,
+                        operation: FormConstants.operationType.OR,
+                        value: true, // Default value
+                        where: [
+                            {
+                                rowId: "row1",
+                                fieldName: "name",
+                                value: "abc"
+                            },
+                            {
+                                rowId: "row1",
+                                fieldName: "number",
+                                value: "321"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                type:  FormConstants.fieldType.textBox,
+                label:  "Number",
+                name:  "number",
+                attr: {
+                    class:  "",
+                    placeholder:  "Number"
+                },
+                value:  ""
+            }
         ]
-      },
-      {
-        type:  FormConstants.fieldType.textBox,
-        label:  "Number",
-        name:  "number",
-        attr: {
-          class:  "",
-          placeholder:  "Number"
-        },
-        value:  ""
-      }
-    ]
-  }
+    }
 ];
 ```
 
@@ -399,25 +402,25 @@ this.formGroup = [
 
 ```typescript
 this.formGroup = [
-  ...
-  {
-    id: "row1",
-    label: "",
-    class: "",
-    fields: [
-      {
-        type: FormConstants.fieldType.button,
-        label: "Save",
-        clickEvent: {
-          validateForm: true
-        },
-        name: "save",
-        attr: {
-          class: "btn-success"
-        }
-      }
-    ]
-  }
+    ...
+    {
+        id: "row1",
+        label: "",
+        class: "",
+        fields: [
+            {
+                type: FormConstants.fieldType.button,
+                label: "Save",
+                clickEvent: {
+                    validateForm: true
+                },
+                name: "save",
+                attr: {
+                    class: "btn-success"
+                }
+            }
+        ]
+    }
 ];
 ```
 
@@ -429,25 +432,25 @@ this.formGroup = [
 
 ```typescript
 this.formGroup = [
-  ...
-  {
-    id: "row1",
-    label: "",
-    class: "",
-    fields: [
-      {
-        type: FormConstants.fieldType.button,
-        label: "Save",
-        clickEvent: {
-          returnValue: true
-        },
-        name: "save",
-        attr: {
-          class: "btn-success"
-        }
-      }
-    ]
-  }
+    ...
+    {
+        id: "row1",
+        label: "",
+        class: "",
+        fields: [
+            {
+                type: FormConstants.fieldType.button,
+                label: "Save",
+                clickEvent: {
+                    returnValue: true
+                },
+                name: "save",
+                attr: {
+                    class: "btn-success"
+                }
+            }
+        ]
+    }
 ];
 ```
 
@@ -459,25 +462,25 @@ this.formGroup = [
 
 ```typescript
 this.formGroup = [
-  ...
-  {
-    id: "row1",
-    label: "",
-    class: "",
-    fields: [
-      {
-        type: FormConstants.fieldType.button,
-        label: "Save",
-        clickEvent: {
-          returnFormObject: true
-        },
-        name: "save",
-        attr: {
-          class: "btn-success"
-        }
-      }
-    ]
-  }
+    ...
+    {
+        id: "row1",
+        label: "",
+        class: "",
+        fields: [
+            {
+                type: FormConstants.fieldType.button,
+                label: "Save",
+                clickEvent: {
+                    returnFormObject: true
+                },
+                name: "save",
+                attr: {
+                    class: "btn-success"
+                }
+            }
+        ]
+    }
 ];
 ```
 
@@ -489,25 +492,25 @@ this.formGroup = [
 
 ```typescript
 this.formGroup = [
-  ...
-  {
-    id: "row1",
-    label: "",
-    class: "",
-    fields: [
-      {
-        type: FormConstants.fieldType.button,
-        label: "Save",
-        clickEvent: {
-          returnFieldObject: true
-        },
-        name: "save",
-        attr: {
-          class: "btn-success"
-        }
-      }
-    ]
-  }
+    ...
+    {
+        id: "row1",
+        label: "",
+        class: "",
+        fields: [
+            {
+                type: FormConstants.fieldType.button,
+                label: "Save",
+                clickEvent: {
+                    returnFieldObject: true
+                },
+                name: "save",
+                attr: {
+                    class: "btn-success"
+                }
+            }
+        ]
+    }
 ];
 ```
 
@@ -519,32 +522,42 @@ this.formGroup = [
 
 ```typescript
 this.formGroup = [
-  ...
-  {
-    id: "row1",
-    label: "",
-    class: "",
-    fields: [
-      {
-        type: FormConstants.fieldType.button,
-        label: "Reset",
-        clickEvent: {
-          resetForm: true
-        },
-        name: "reset",
-        attr: {
-          class: "btn-info"
-        }
-      }
-    ]
-  }
+    ...
+    {
+        id: "row1",
+        label: "",
+        class: "",
+        fields: [
+            {
+                type: FormConstants.fieldType.button,
+                label: "Reset",
+                clickEvent: {
+                    resetForm: true
+                },
+                name: "reset",
+                attr: {
+                    class: "btn-info"
+                }
+            }
+        ]
+    }
 ];
 ```
 
 <br/>
 
 
-**10. You can return values for click event**:
+**10. You can validate form with**  `DynamicFormService`:
+
+```typescript
+this._dynamicFormService.validateFormField();
+```
+
+
+<br/>
+
+
+**11. You can return values for click event**:
 
 ```typescript
 submitEvent(event) {
@@ -555,7 +568,7 @@ submitEvent(event) {
 
 <br/>  
 
-**11. You can now easily modify your form attributes with**  `DynamicFormService`:
+**12. You can now easily modify your form attributes with**  `DynamicFormService`:
 
 ```typescript
 let changeValue = [
@@ -574,7 +587,7 @@ this._dynamicFormService.updateFormAttr(changeValue);
 
 <br/>  
 
-**12. You can now easily modify your form values with**  `DynamicFormService`:
+**13. You can now easily modify your form values with**  `DynamicFormService`:
 
 ```typescript
 let changeValue = [

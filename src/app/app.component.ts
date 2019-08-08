@@ -14,7 +14,7 @@ export class AppComponent {
     formConstants: any = FormConstants;
     defaultConfig: DefaultConfig = {
         formStyle: FormConstants.formStyle.vertically, // or FormConstants.formStyle.horizontal
-        class: 'abc-form'
+        class: 'dynamic-form'
     };
 
     constructor(private _dynamicFormService: DynamicFormService) { }
@@ -330,6 +330,8 @@ export class AppComponent {
                 ]
             }
         ];
+        
+        this._dynamicFormService.setFormFields(this.fieldJson, this.defaultConfig);
     }
 
     submitEvent(event) {
