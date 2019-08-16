@@ -1,17 +1,17 @@
-# Number Interface
+# ColorPicker Interface
 
-Tracks the value and validation status of an individual Number.
+Tracks the value and validation status of an individual ColorPicker.
 
 <br/>
 
 ```typescript
 interface Fields {
-    type: 'number';
+    type: 'colorPicker';
     label?: string | null;
     name: string;
     attr?: Attributes;
     class?: string | null;
-    value?: number | null;
+    value?: string | null;
     validations?: Validator[] | [];
     relation?: RelationConfig[] | [];
     changeEvent?: EventValue;
@@ -30,12 +30,7 @@ interface Fields {
 ```typescript
 interface Attributes {
     class?: string | null;
-    readonly?: boolean | false;
-    placeholder?: string | '';
     display?: boolean | true;
-    min: number | null;
-    max: number | null;
-    step: number | null;
 }
 ```
 

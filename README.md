@@ -175,6 +175,8 @@ export class DynamicFormComponent implements OnInit {
 | [textBox](https://github.com/praveenkanchan/angular-reactive-dynamic-forms/blob/master/document/textBox.md "Interface detail of textBox")                | ✓        | ✓   | ✓   | ✓         | ✓         | ✓     | ✓      | ✓     | ✓       | ✓         |
 | [password](https://github.com/praveenkanchan/angular-reactive-dynamic-forms/blob/master/document/password.md "Interface detail of password")             | ✓        | ✓   | ✓   | ✓         | ✓         | ✓     | ✓      | ✓     | ✓       | ✓         |
 | [textArea](https://github.com/praveenkanchan/angular-reactive-dynamic-forms/blob/master/document/textArea.md "Interface detail of textArea")             | ✓        | ✗   | ✗   | ✓         | ✓         | ✗     | ✗      | ✗     | ✓       | ✓         |
+| [colorPicker](https://github.com/praveenkanchan/angular-reactive-dynamic-forms/blob/master/document/colorPicker.md "Interface detail of colorPicker")                | ✓        | ✗   | ✗   | ✗         | ✗         | ✗     | ✗      | ✗     | ✗       | ✗         |
+| [signaturePad](https://github.com/praveenkanchan/angular-reactive-dynamic-forms/blob/master/document/signaturePad.md "Interface detail of signaturePad")                | ✓        | ✗   | ✗   | ✗         | ✗         | ✗     | ✗      | ✗     | ✗       | ✗         |
 | [dateTextBox](https://github.com/praveenkanchan/angular-reactive-dynamic-forms/blob/master/document/dateTextBox.md "Interface detail of dateTextBox")    | ✓        | ✗   | ✗   | ✗         | ✗         | ✗     | ✗      | ✗     | ✗       | ✓         |
 | [timeTextBox](https://github.com/praveenkanchan/angular-reactive-dynamic-forms/blob/master/document/timeTextBox.md "Interface detail of timeTextBox")    | ✓        | ✗   | ✗   | ✗         | ✗         | ✗     | ✗      | ✗     | ✗       | ✓         |
 | [checkBox Group](https://github.com/praveenkanchan/angular-reactive-dynamic-forms/blob/master/document/checkBox.md "Interface detail of checkBox")       | ✓        | ✗   | ✗   | ✓         | ✓         | ✗     | ✗      | ✗     | ✗       | ✓         |
@@ -200,6 +202,8 @@ export class DynamicFormComponent implements OnInit {
 | textBox        | ✗          | ✓           |
 | password       | ✗          | ✓           |
 | textArea       | ✗          | ✓           |
+| colorPicker    | ✗          | ✓           |
+| signaturePad   | ✗          | ✓           |
 | dateTextBox    | ✗          | ✓           |
 | timeTextBox    | ✗          | ✓           |
 | checkBox Group | ✓          | ✓           |

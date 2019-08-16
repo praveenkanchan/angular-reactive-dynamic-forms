@@ -1,17 +1,17 @@
-# Number Interface
+# SignaturePad Interface
 
-Tracks the value and validation status of an individual Number.
+Tracks the value and validation status of an individual SignaturePad. This functionality made using Canvas.
 
 <br/>
 
 ```typescript
 interface Fields {
-    type: 'number';
+    type: 'signaturePad';
     label?: string | null;
     name: string;
+    canvasAttr?: CanvasAttributes;
     attr?: Attributes;
     class?: string | null;
-    value?: number | null;
     validations?: Validator[] | [];
     relation?: RelationConfig[] | [];
     changeEvent?: EventValue;
@@ -31,11 +31,39 @@ interface Fields {
 interface Attributes {
     class?: string | null;
     readonly?: boolean | false;
-    placeholder?: string | '';
     display?: boolean | true;
-    min: number | null;
-    max: number | null;
-    step: number | null;
+}
+```
+
+<br/>
+<br/>
+
+
+**CanvasAttributes Interface**
+
+```typescript
+export interface CanvasAttributes {
+    width?: number;
+    height?: number;
+    lineWidth?: number;
+    lineCap?: string;
+    strokeStyle?: string;
+    fillStyle?: string;
+    filter?: string;
+    font?: string;
+    globalAlpha?: number;
+    globalCompositeOperation?: string;
+    imageSmoothingEnabled?: boolean;
+    imageSmoothingQuality?: string;
+    lineDashOffset?: number;
+    lineJoin?: string;
+    miterLimit?: number;
+    shadowBlur?: number;
+    shadowColor?: string;
+    shadowOffsetX?: number;
+    shadowOffsetY?: number;
+    textAlign?: string;
+    textBaseline?: string;
 }
 ```
 

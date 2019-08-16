@@ -223,12 +223,21 @@ export class AppComponent {
                 id: "row4",
                 label: "",
                 class: "",
-                divider: true,
                 fields: [
                     {
                         type: this.formConstants.fieldType.timeTextBox,
                         label: "Current Time",
                         name: "current-time",
+                        attr: {
+                            class: ""
+                        },
+                        value: "",
+                        validations: []
+                    },
+                    {
+                        type: this.formConstants.fieldType.colorPicker,
+                        label: "Color Picker",
+                        name: "color-picker",
                         attr: {
                             class: ""
                         },
@@ -249,13 +258,37 @@ export class AppComponent {
                         },
                         value: "",
                         validations: []
-                    },
+                    }
+                ]
+            },
+            {
+                id: "row4",
+                label: "",
+                class: "",
+                divider: true,
+                fields: [
                     {
                         type: this.formConstants.fieldType.image,
                         label: "Show Photo",
                         name: "show-photo",
                         attr: {
                             class: "show-photo"
+                        },
+                        value: "",
+                        validations: []
+                    },
+                    {
+                        type: this.formConstants.fieldType.signaturePad,
+                        label: "Signature Pad",
+                        name: "signaturePad",
+                        canvasAttr: {
+                            width: 600,
+                            height: 300,
+                            lineWidth: 5,
+                            strokeStyle: '#0f6fd0'
+                        },
+                        attr: {
+                            class: ""
                         },
                         value: "",
                         validations: []
