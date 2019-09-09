@@ -12,6 +12,7 @@ interface Fields {
     attr?: Attributes;
     class?: string | null;
     value?: Array<any> | [];
+    gridLayout?: GridLayout | null;
     otherOptions: Array<any>;
     validations?: Validator[] | [];
     relation?: RelationConfig[] | [];
@@ -25,6 +26,21 @@ interface Fields {
 # Supported Interface
 
 <br/>
+
+**GridLayout Interface**
+
+```typescript
+interface GridLayout {
+    startColumn: number;
+    endColumn: number;
+    startRow: number;
+    endRow: number;
+}
+```
+
+<br/>
+<br/>
+
 
 **Attributes Interface**
 
