@@ -34,8 +34,9 @@
     "@angular/router": "^7.1.0",
     "@angular/upgrade": "^7.1.0",
     "angular-in-memory-web-api": "github:brandonroberts/in-memory-web-api-bazel#50a34d8",
-    "angular-reactive-dynamic-forms": "^2.0.3",
+    "angular-reactive-dynamic-forms": "^2.1.0",
     "core-js": "^2.5.4",
+    "node-sass": "^4.13.0",
     "rxjs": "^6.5.1",
     "zone.js": "~0.8.26"
   },

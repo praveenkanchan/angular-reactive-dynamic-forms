@@ -115,7 +115,8 @@ export class DynamicFormComponent implements OnInit {
         this.defaultConfig = {
             formStyle: FormConstants.formStyle.vertically, // or FormConstants.formStyle.horizontal
             class: 'dynamic-form',
-            validateForm: false // Default value
+            validateForm: false, // Default value
+            bootstrapClass: true // Default value
         };
 
         this._dynamicFormService.setFormFields(this.formGroup, this.defaultConfig);
@@ -144,6 +145,7 @@ export class DynamicFormComponent implements OnInit {
 
 | Ionic 4      | Angular | angular-reactive-dynamic-forms |
 |--------------|---------|--------------------------------|
+| Angular v8.x | v8.x    | ✓                              |
 | Angular v7.x | v7.x    | ✓                              |
 | Angular v6.x | v6.x    | ✓                              |
 
@@ -198,22 +200,22 @@ export class DynamicFormComponent implements OnInit {
 
 |                | clickEvent | changeEvent |
 |----------------|------------|-------------|
-| number         | ✗          | ✓           |
-| textBox        | ✗          | ✓           |
-| password       | ✗          | ✓           |
-| textArea       | ✗          | ✓           |
-| colorPicker    | ✗          | ✓           |
-| signaturePad   | ✗          | ✓           |
-| dateTextBox    | ✗          | ✓           |
-| timeTextBox    | ✗          | ✓           |
-| checkBox Group | ✓          | ✓           |
-| radio Group    | ✗          | ✓           |
-| selectOption   | ✗          | ✓           |
-| files          | ✗          | ✓           |
-| image          | ✗          | ✗           |
-| hidden         | ✗          | ✗           |
-| stepWizard     | ✓          | ✗           |
-| button         | ✓          | ✗           |
+| [number](https://github.com/praveenkanchan/angular-reactive-dynamic-forms/blob/master/document/number.md "Interface detail of number")         | ✗          | ✓           |
+| [textBox](https://github.com/praveenkanchan/angular-reactive-dynamic-forms/blob/master/document/textBox.md "Interface detail of textBox")        | ✗          | ✓           |
+| [password](https://github.com/praveenkanchan/angular-reactive-dynamic-forms/blob/master/document/password.md "Interface detail of password")       | ✗          | ✓           |
+| [textArea](https://github.com/praveenkanchan/angular-reactive-dynamic-forms/blob/master/document/textArea.md "Interface detail of textArea")       | ✗          | ✓           |
+| [colorPicker](https://github.com/praveenkanchan/angular-reactive-dynamic-forms/blob/master/document/colorPicker.md "Interface detail of colorPicker")    | ✗          | ✓           |
+| [signaturePad](https://github.com/praveenkanchan/angular-reactive-dynamic-forms/blob/master/document/signaturePad.md "Interface detail of signaturePad")   | ✗          | ✓           |
+| [dateTextBox](https://github.com/praveenkanchan/angular-reactive-dynamic-forms/blob/master/document/dateTextBox.md "Interface detail of dateTextBox")    | ✗          | ✓           |
+| [timeTextBox](https://github.com/praveenkanchan/angular-reactive-dynamic-forms/blob/master/document/timeTextBox.md "Interface detail of timeTextBox")    | ✗          | ✓           |
+| [checkBox Group](https://github.com/praveenkanchan/angular-reactive-dynamic-forms/blob/master/document/checkBox.md "Interface detail of checkBox") | ✓          | ✓           |
+| [radio Group](https://github.com/praveenkanchan/angular-reactive-dynamic-forms/blob/master/document/radio.md "Interface detail of radio")    | ✗          | ✓           |
+| [selectOption](https://github.com/praveenkanchan/angular-reactive-dynamic-forms/blob/master/document/selectOption.md "Interface detail of selectOption")   | ✗          | ✓           |
+| [files](https://github.com/praveenkanchan/angular-reactive-dynamic-forms/blob/master/document/files.md "Interface detail of files")          | ✗          | ✓           |
+| [image](https://github.com/praveenkanchan/angular-reactive-dynamic-forms/blob/master/document/image.md "Interface detail of image")          | ✗          | ✗           |
+| [hidden](https://github.com/praveenkanchan/angular-reactive-dynamic-forms/blob/master/document/hidden.md "Interface detail of hidden")         | ✗          | ✗           |
+| [stepWizard](https://github.com/praveenkanchan/angular-reactive-dynamic-forms/blob/master/document/stepWizard.md "Interface detail of stepWizard")     | ✓          | ✗           |
+| [button](https://github.com/praveenkanchan/angular-reactive-dynamic-forms/blob/master/document/button.md "Interface detail of button")         | ✓          | ✗           |
 
  
 <br/>
@@ -226,7 +228,7 @@ export class DynamicFormComponent implements OnInit {
 
 In order to improve clarity it's often considered good practice to group forms into several logical `fieldset` sections.
 
-**1. Create a**  `FormGroup`  **and add a**  `DynamicFormComponent`:
+**1. Create a**  `FormGroup`  **and add a**  `DynamicFormComponent` **and example of GridColumn**:
 
 ```typescript
 ngOnInit() {
@@ -235,6 +237,8 @@ ngOnInit() {
             id:  "row1",
             label:  "",
             class:  "",
+            bootstrapClass: false,
+            gridColumnCount: 5,
             fields: [
                 {
                     type:  FormConstants.fieldType.textBox,
@@ -246,6 +250,12 @@ ngOnInit() {
                         display: true // Default value
                     },
                     value:  "",
+                    gridLayout: {
+                        startColumn: 1,
+                        endColumn: 4,
+                        startRow: 1,
+                        endRow: 2
+                    },
                     validations: []
                 },
                 {
@@ -258,6 +268,12 @@ ngOnInit() {
                         display: true // Default value
                     },
                     value:  "",
+                    gridLayout: {
+                        startColumn: 4,
+                        endColumn: 6,
+                        startRow: 1,
+                        endRow: 2
+                    },
                     validations: []
                 }
             ]
@@ -299,38 +315,7 @@ this.formGroup = [
 <br/>
 
 
-
-**3. In file type input return file object or also return base64decoded files using `base64codedFile` attributes**:
-
-```typescript
-this.formGroup = [
-    {
-        id:  "row1",
-        label:  "",
-        fields: [
-            ...
-            {
-                type: FormConstants.fieldType.files,
-                label: "Logo",
-                name: "logo",
-                attr: {
-                    ...
-                    base64codedFile: true
-                },
-                value: [],
-                validations: []
-            }
-        ]
-    }
-];
-```
-
-
-
-<br/>
-
-
-**4. You can relate one or more fields with conditional values**:
+**3. You can relate one or more fields with conditional values**:
 
 ```typescript
 this.formGroup = [
@@ -402,7 +387,7 @@ this.formGroup = [
 <br/>
 
 
-**5. You can click this button then validate value and return form values**:
+**4. You can click this button then validate value and return form values**:
 
 ```typescript
 this.formGroup = [
@@ -432,7 +417,7 @@ this.formGroup = [
 <br/>
 
 
-**6. You can click this button then return form values without validate value**:
+**5. You can click this button then return form values without validate value**:
 
 ```typescript
 this.formGroup = [
@@ -462,7 +447,7 @@ this.formGroup = [
 <br/>
 
 
-**7. You can click this button then return reactive form object**:
+**6. You can click this button then return reactive form object**:
 
 ```typescript
 this.formGroup = [
@@ -492,7 +477,7 @@ this.formGroup = [
 <br/>
 
 
-**8. You can click this button then return fields form JSON object**:
+**7. You can click this button then return fields form JSON object**:
 
 ```typescript
 this.formGroup = [
@@ -522,7 +507,7 @@ this.formGroup = [
 <br/>
 
 
-**9. You can click this button then reset form values**:
+**8. You can click this button then reset form values**:
 
 ```typescript
 this.formGroup = [
@@ -551,7 +536,7 @@ this.formGroup = [
 <br/>
 
 
-**10. You can validate form with**  `DynamicFormService`:
+**9. You can validate form with**  `DynamicFormService`:
 
 ```typescript
 this._dynamicFormService.validateFormField();
@@ -561,7 +546,7 @@ this._dynamicFormService.validateFormField();
 <br/>
 
 
-**11. You can return values for click event**:
+**10. You can return values for click event**:
 
 ```typescript
 submitEvent(event) {
@@ -572,7 +557,7 @@ submitEvent(event) {
 
 <br/>  
 
-**12. You can now easily modify your form attributes with**  `DynamicFormService`:
+**11. You can now easily modify your form attributes with**  `DynamicFormService`:
 
 ```typescript
 let changeValue = [
@@ -591,7 +576,7 @@ this._dynamicFormService.updateFormAttr(changeValue);
 
 <br/>  
 
-**13. You can now easily modify your form values with**  `DynamicFormService`:
+**12. You can now easily modify your form values with**  `DynamicFormService`:
 
 ```typescript
 let changeValue = [
