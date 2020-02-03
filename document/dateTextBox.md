@@ -48,6 +48,7 @@ interface Attributes {
     class?: string | null;
     readonly?: boolean | false;
     placeholder?: string | '';
+    dateTimeString?: boolean | false;
     display?: boolean | true;
 }
 ```
