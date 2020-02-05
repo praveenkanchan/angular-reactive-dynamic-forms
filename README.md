@@ -37,7 +37,20 @@ See [DEMO](https://angular-reactive-dynamic-forms.stackblitz.io "See angular rea
 ```
 npm i angular-reactive-dynamic-forms --save
 ```
-  
+
+
+**2. Create CSS file and Import CSS style (angular.json)**:
+
+```
+...
+    "styles": [
+        ...
+        "src/form-css.css",
+        ...
+    ],
+...
+```
+
 <br/>
 
 
@@ -237,7 +250,7 @@ ngOnInit() {
             id:  "row1",
             label:  "",
             class:  "",
-            bootstrapClass: false,
+            bootstrapClass: false, // Remove bootstrap class for using grid
             gridColumnCount: 5,
             fields: [
                 {
@@ -287,7 +300,7 @@ ngOnInit() {
   
 
 ```html
-<dynamic-material-form (submitEvent)="submitEvent($event)"></dynamic-material-form>
+<dynamic-form-controller (submitEvent)="submitEvent($event)"></dynamic-form-controller>
 ```
 
 
@@ -560,16 +573,22 @@ submitEvent(event) {
 **11. You can now easily modify your form attributes with**  `DynamicFormService`:
 
 ```typescript
-let changeValue = [
+let changeAttrValue = [
 	{
         rowId:  'row1',
         fieldName:  'email',
         attrName:  FormConstants.attributeType.readonly,
-        value:  true
+        value:  true // update attribute value
+    },
+    {
+        rowId:  'row1',
+        fieldName:  'email',
+        attrName:  FormConstants.attributeType.placeholder,
+        value:  'enter valid email id' 
     }
 ];
 
-this._dynamicFormService.updateFormAttr(changeValue);
+this._dynamicFormService.updateFormAttr(changeAttrValue);
 ```
 
 
