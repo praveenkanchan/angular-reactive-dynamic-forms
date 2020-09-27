@@ -1,14 +1,23 @@
-'use strict'; // necessary for es6 output in node
+import { AppPage } from './app.po';
+import { browser, logging } from 'protractor';
 
-import { browser, element, by } from 'protractor';
+describe('workspace-project App', () => {
+  let page: AppPage;
 
-describe('cli-quickstart App', () => {
   beforeEach(() => {
-    return browser.get('/');
+    page = new AppPage();
   });
 
-  it('should display message saying app works', () => {
-    let pageTitle = element(by.css('app-root h1')).getText();
-    expect(pageTitle).toEqual('Welcome to My First Angular App!!');
+  it('should display welcome message', () => {
+    page.navigateTo();
+    expect(page.getTitleText()).toEqual('angular10 app is running!');
+  });
+
+  afterEach(async () => {
+    // Assert that there are no errors emitted from the browser
+    const logs = await browser.manage().logs().get(logging.Type.BROWSER);
+    expect(logs).not.toContain(jasmine.objectContaining({
+      level: logging.Level.SEVERE,
+    } as logging.Entry));
   });
 });
